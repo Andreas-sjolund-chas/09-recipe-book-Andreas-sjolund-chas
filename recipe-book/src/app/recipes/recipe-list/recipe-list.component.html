@@ -1,0 +1,54 @@
+<input id="input-search" (input)="search($event.target.value)" type="text" name="search" placeholder="Search for a dish"/>
+
+<p>Filter: </p>
+
+<form name="countryFilter" ng-controller="countryFilterController">
+  <div class="countryFilters">
+
+    <div class="countryFilterItem">
+      <p>Indian</p>
+      <label class="switch">
+        <input type="checkbox" ng-model="checkboxModel.value1">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <div class="countryFilterItem">
+      <p>Japanese</p>
+      <label class="switch">
+        <input type="checkbox" ng-model="checkboxModel.value2">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <div class="countryFilterItem">
+      <p>Moroccan</p>
+      <label class="switch">
+        <input type="checkbox" ng-model="checkboxModel.value3">
+        <span class="slider round"></span>
+      </label>
+    </div>
+    <div class="countryFilterItem">
+      <p>French</p>
+      <label class="switch">
+        <input type="checkbox" ng-model="checkboxModel.value4">
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div>
+</form>
+
+<h3 *ngIf="searchString">Search results for: {{ searchString | uppercase }}</h3>
+<ul *ngIf="recipes">
+  <li *ngFor="let recipe of recipes">
+    <a routerLink="/recipe/{{recipe.id}}">
+    <header>
+      <h3>{{ recipe.name }}</h3>
+    </header>
+    <main>
+      <img src="{{recipe.photoUrl}}" alt="">
+      <div class="to-recipe__container">
+        <p class="to-recipe">Go to recipe</p>
+      </div>
+    </main>
+  </a>
+  </li>
+</ul>
